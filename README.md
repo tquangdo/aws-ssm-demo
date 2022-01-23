@@ -10,21 +10,29 @@
 2. [vtitechblog](https://vtitech.vn/connect-den-private-server-thong-qua-session-manager/)
 3. [awsstudygroup](https://000031.awsstudygroup.com/vi/)
 
-## ref 1.
-### 1-1/ EC2
+## EC2
 - launch instance:
 - 1. AMI=`linux`
-- 2. role name=`AmazonEC2RoleforSSM`
-### 1-2/ run command
+> ref 3: AMI=`win server`
+- 2. role name=`DTQRoleSSM`, policy name=`AmazonEC2RoleforSSM`
+> ref 3: policy name=`AmazonSSMManagedInstanceCore`
+
+## ref 1.
+### 1-1/ run command
 - SSM click `run command` > `run a command`
 - type=`AWS-RunShellScript`
+> ref 3: type=`AWS-RunPowerShellScript`
 - Command parameters=`sudo yum update -y`
+> ref 3: Command parameters=`net user`
 - Targets=`Choose instances manually` > select EC2
 ![1](screenshots/1.png)
 - click `Run`
-- see output: choose EC2 > click `View output`
+- see output: choose `instance ID` > click `View output`
 ![2](screenshots/2.png)
-### 1-3/ Session Manager
+---
+> ref 3:
+![ref3](screenshots/ref3.png)
+### 1-2/ Session Manager
 - SSM click `Session Manager` > `Start Session`
 - Target instances: select EC2
 ![3](screenshots/3.png)
@@ -37,7 +45,7 @@
 ### 2-2/ AWS CLI
 #### connect to server (like ssh)
 ```shell
-# TH KO attach IAM role AmazonEC2RoleforSSM
+# TH KO attach IAM role `DTQRoleSSM`
 aws ssm start-session --target i-0d5c7930bbb66cc43 --profile default
 An error occurred (TargetNotConnected) when calling the StartSession operation: i-0d5c7930bbb66cc43 is not connected.
 
@@ -61,3 +69,14 @@ Waiting for connections...
 ssh -i bastionHostKey.pem ec2-user@localhost -p 10022 -L 8443:${WEB_APP_ENDPOINT}:443
 ```
 - Sau khi chạy xong bạn có thể mở https://localhost:8443 để đến với server private từ máy local rồi!
+
+## ref 3: Patch Manager
+- click `Fleet Manager` > will show all running EC2
+![fleet](screenshots/fleet.png)
+- select `Instance ID` > click `Start session`
+![startss](screenshots/startss.png)
+- click `Patch Manager` > click `Patch now`
+- select `Scan and install` + `Patch only the target instances I specify -> Choose instance manually`
+![selectec2](screenshots/selectec2.png)
+- select EC2 > click `Patch Now`
+![res](screenshots/res.png)
