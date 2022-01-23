@@ -19,7 +19,7 @@
 
 ## ref 1.
 ### 1-1/ run command
-- SSM click `run command` > `run a command`
+- SSM left tab: click `run command` > `run a command`
 - type=`AWS-RunShellScript`
 > ref 3: type=`AWS-RunPowerShellScript`
 - Command parameters=`sudo yum update -y`
@@ -33,7 +33,7 @@
 > ref 3:
 ![ref3](screenshots/ref3.png)
 ### 1-2/ Session Manager
-- SSM click `Session Manager` > `Start Session`
+- SSM left tab: click `Session Manager` > `Start Session`
 - Target instances: select EC2
 ![3](screenshots/3.png)
 - click `start session`
@@ -71,11 +71,11 @@ ssh -i bastionHostKey.pem ec2-user@localhost -p 10022 -L 8443:${WEB_APP_ENDPOINT
 - Sau khi chạy xong bạn có thể mở https://localhost:8443 để đến với server private từ máy local rồi!
 
 ## ref 3: Patch Manager
-- click `Fleet Manager` > will show all running EC2
+- SSM left tab: click `Fleet Manager` > will show all running EC2
 ![fleet](screenshots/fleet.png)
-- select `Instance ID` > click `Start session`
+- select `Instance ID` > click `Instance actions` > choose `Start session`
 ![startss](screenshots/startss.png)
-- click `Patch Manager` > click `Patch now`
+- SSM left tab: click `Patch Manager` > click `Patch now`
 - select `Scan and install` + `Patch only the target instances I specify -> Choose instance manually`
 ![selectec2](screenshots/selectec2.png)
 - select EC2 > click `Patch Now`
