@@ -8,7 +8,8 @@
 ## reference
 1. [aws](https://aws.amazon.com/getting-started/hands-on/remotely-run-commands-ec2-instance-systems-manager/)
 2. [vtitechblog](https://vtitech.vn/connect-den-private-server-thong-qua-session-manager/)
-3. [awsstudygroup](https://000031.awsstudygroup.com/vi/)
+3. [awsstudygroup1](https://000031.awsstudygroup.com/vi)
+4. [awsstudygroup2](https://000058.awsstudygroup.com/vi)
 
 ## EC2
 - launch instance:
@@ -80,3 +81,11 @@ ssh -i bastionHostKey.pem ec2-user@localhost -p 10022 -L 8443:${WEB_APP_ENDPOINT
 ![selectec2](screenshots/selectec2.png)
 - select EC2 > click `Patch Now`
 ![res](screenshots/res.png)
+
+## ref 4.
+![overviewnew](screenshots/overviewnew.png)
+
+## delete AWS resources of ref 4.
+```shell
+./del_aws_resource.sh
+```
